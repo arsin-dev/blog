@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>arsin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/default.css" />
+    </head>
+    <body>
+        <div class="dev-banner">
+            <span class="dev-banner-text">Website is incomplete will be ready soon!</span>
+        </div>
+
+        <header>
+            $partial("templates/nav.html")$
+        </header>
+
+        <main role="main">
+            <h1>$title$</h1>
+            $body$
+        </main>
+
+        <footer>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-bracket-left">[</span>
+                <span class="theme-text">LIGHT</span>
+                <span class="theme-bracket-right">]</span>
+            </button>
+        </footer>
+
+        <script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeText = document.querySelector('.theme-text');
+
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeText.textContent = currentTheme === 'light' ? 'LIGHT' : 'DARK';
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeText.textContent = newTheme === 'light' ? 'LIGHT' : 'DARK';
+            });
+        </script>
+    </body>
+</html>
